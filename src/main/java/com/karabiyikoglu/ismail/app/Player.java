@@ -45,14 +45,7 @@ public class Player implements Runnable {
 					break;
 				}
 				
-				String receiveMessage = messageHandler.receiveMessage();//Receive a new message from messageHandler
-				if(receiveMessage == null) {//No player has been sent any message
-					newMessageBuilder.append(IApplicationConstants.DEFAULT_INIT_MESSAGE);
-				}else {//A message successfully received
-					receiveCount++;
-					System.out.println(name + " received message : " + receiveMessage);
-					newMessageBuilder.append(receiveMessage).append(" ").append(sentCount);
-				}
+				receiveMessage(newMessageBuilder);
 				
 				if(receiveCount >= IApplicationConstants.MAXIMUM_MESSAGE_COUNT && sentCount >= IApplicationConstants.MAXIMUM_MESSAGE_COUNT) {
 					//Player reached the limit. We call notify method in case there is a waiting player thread 
@@ -60,10 +53,33 @@ public class Player implements Runnable {
 					break;
 				}
 				
-				System.out.println(name + " sent message     : " + newMessageBuilder.toString());
-				messageHandler.sendMessage(newMessageBuilder.toString());
-				sentCount++;
+				sendMessage(newMessageBuilder.toString());
 			}
 		}
+	}
+
+	/**
+	 * Receives message from MessageHandler object
+	 * @param newMessageBuilder
+	 */
+	private void receiveMessage(StringBuilder newMessageBuilder) {
+		String receiveMessage = messageHandler.receiveMessage();//Receive a new message from messageHandler
+		if(receiveMessage == null) {//No player has been sent any message
+			newMessageBuilder.append(IApplicationConstants.DEFAULT_INIT_MESSAGE);//So, we start the conversation with initial message
+		}else {//A message successfully received
+			receiveCount++;
+			System.out.println(name + " received message : " + receiveMessage);
+			newMessageBuilder.append(receiveMessage).append(" ").append(sentCount);
+		}
+	}
+	
+	/**
+	 * Sends message via MessageHandler object
+	 * @param newMessage
+	 */
+	private void sendMessage(String newMessage) {
+		System.out.println(name + " sent message     : " + newMessage);
+		messageHandler.sendMessage(newMessage);
+		sentCount++;
 	}
 }
