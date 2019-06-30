@@ -1,4 +1,4 @@
-package com.karabiyikoglu.ismail.app;
+package com.karabiyikoglu.ismail.singleprocess.app;
 
 /**
  * Main class, application starts from here

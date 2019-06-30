@@ -1,6 +1,6 @@
-package com.karabiyikoglu.ismail.app;
+package com.karabiyikoglu.ismail.singleprocess.app;
 
-import com.karabiyikoglu.ismail.app.constants.IConstants;
+import com.karabiyikoglu.ismail.singleprocess.app.constants.IConstants;
 
 /**
  * Player class
