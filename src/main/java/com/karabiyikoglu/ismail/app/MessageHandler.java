@@ -1,7 +1,7 @@
 package com.karabiyikoglu.ismail.app;
 
 /**
- * MessageHandler class
+ * MessageHandler class for sending and receiving message
  * @author ismail
  *
  */
@@ -10,17 +10,11 @@ public class MessageHandler {
 	private String message;
 	private Player initiatorPlayer;
 	
-	public synchronized void sendMessage(String message) {
+	public void setMessage(String message) {
 		this.message = message;
-		notify();
-		try {
-			wait();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 	
-	public synchronized String receiveMessage() {
+	public String receiveMessage() {
 		return message;
 	}
 
