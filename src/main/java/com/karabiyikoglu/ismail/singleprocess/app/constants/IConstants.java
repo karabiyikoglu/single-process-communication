@@ -1,6 +1,7 @@
 package com.karabiyikoglu.ismail.singleprocess.app.constants;
 
 /**
+ * This interface holds some constant variables
  * 
  * @author ismail
  *
